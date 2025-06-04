@@ -66,15 +66,15 @@ $output["SomeProperty"] = SomeValue
 
 				}
 
-				#Remove individual ConnectionParameters from boundParameters
-				$Parameters | Get-PASParameter -ParametersToRemove $ConnectionParameters
+                                #Remove individual ConnectionParameters from boundParameters
+                                $Parameters = $Parameters | Get-PASParameter -ParametersToRemove $ConnectionParameters
 
-			}
+                        }
 
-		}
+                }
 
-	}
+        }
 
-	End { }
+        End { $Parameters }
 
 }
