@@ -18,7 +18,7 @@ Creates hashtable structured to be used as input for add account operations
 ```
 New-PASAccountObject [-uploadIndex <Int32>] [-userName <String>] [-name <String>] [-address <String>]
  -platformID <String> -SafeName <String> [-secretType <String>] [-secret <SecureString>]
- [-platformAccountProperties <Hashtable>] [-automaticManagementEnabled <Boolean>]
+ [-platformAccountProperties <Object>] [-automaticManagementEnabled <Boolean>]
  [-manualManagementReason <String>] [-remoteMachines <String>] [-accessRestrictedToRemoteMachines <Boolean>]
  [-groupName <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
@@ -205,7 +205,7 @@ key-value pairs to associate with the account, as defined by the account platfor
 These properties are validated against the mandatory and optional properties of the specified platform's definition.
 
 ```yaml
-Type: Hashtable
+Type: Object
 Parameter Sets: AccountObject
 Aliases:
 

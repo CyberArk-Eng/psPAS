@@ -88,7 +88,7 @@ Function New-PASAccountObject {
 			ValueFromPipelinebyPropertyName = $true,
 			ParameterSetName = 'AccountObject'
 		)]
-		[hashtable]$platformAccountProperties,
+                [psobject]$platformAccountProperties,
 
 		[parameter(
 			Mandatory = $false,
@@ -145,7 +145,16 @@ Function New-PASAccountObject {
 	Process {
 
 		#Get all parameters that will be sent in the request
-		$boundParameters = $PSBoundParameters | Get-PASParameter
+                $boundParameters = $PSBoundParameters | Get-PASParameter
+
+                if ($boundParameters.ContainsKey('platformAccountProperties') -and
+                    $boundParameters['platformAccountProperties'] -isnot [hashtable]) {
+                        $hash = @{}
+                        $boundParameters['platformAccountProperties'].psobject.Properties | ForEach-Object {
+                            $hash[$_.Name] = $_.Value
+                        }
+                        $boundParameters['platformAccountProperties'] = $hash
+                }
 
 		#deal with "secret" SecureString
 		If ($PSBoundParameters.ContainsKey('secret')) {

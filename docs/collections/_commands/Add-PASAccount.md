@@ -19,7 +19,7 @@ Can target either the Gen2 API present from 10.4 onwards, or the previous Gen1 A
 ### Gen2
 ```
 Add-PASAccount [-name <String>] [-address <String>] [-userName <String>] -platformID <String>
- -SafeName <String> [-secretType <String>] [-secret <SecureString>] [-platformAccountProperties <Hashtable>]
+ -SafeName <String> [-secretType <String>] [-secret <SecureString>] [-platformAccountProperties <Object>]
  [-automaticManagementEnabled <Boolean>] [-manualManagementReason <String>] [-remoteMachines <String>]
  [-accessRestrictedToRemoteMachines <Boolean>] [<CommonParameters>]
 ```
@@ -202,7 +202,7 @@ These properties are validated against the mandatory and optional properties of 
 Requires minimum version of 10.4
 
 ```yaml
-Type: Hashtable
+Type: Object
 Parameter Sets: Gen2
 Aliases:
 
