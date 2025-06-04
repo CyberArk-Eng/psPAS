@@ -69,14 +69,23 @@ Describe $($PSCommandPath -Replace '.Tests.ps1') {
 
 			}
 
-			It 'outputs expected ConnectionParams properties' {
+                        It 'outputs expected ConnectionParams properties' {
 
-				$result = $InputObj | ConvertTo-ConnectionParam
-				$result['ConnectionParams']['PSMRemoteMachine']['Value'] | Should -Be 'RemoteMachineValue'
-				$result['ConnectionParams']['LogonDomain']['Value'] | Should -Be 'LogonDomainValue'
-				$result['SomeProperty'] | Should -Be 'SomeValue'
+                                $result = $InputObj | ConvertTo-ConnectionParam
+                                $result['ConnectionParams']['PSMRemoteMachine']['Value'] | Should -Be 'RemoteMachineValue'
+                                $result['ConnectionParams']['LogonDomain']['Value'] | Should -Be 'LogonDomainValue'
+                                $result['SomeProperty'] | Should -Be 'SomeValue'
 
-			}
+                        }
+
+                        It 'removes connection parameter properties from top level' {
+
+                                $result = $InputObj | ConvertTo-ConnectionParam
+
+                                $result.Keys | Should -Not -Contain 'PSMRemoteMachine'
+                                $result.Keys | Should -Not -Contain 'LogonDomain'
+
+                        }
 
 			It 'returns expected hashtable if no ConnectionParams are specified' {
 
