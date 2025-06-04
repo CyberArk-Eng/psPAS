@@ -49,7 +49,6 @@ Describe $($PSCommandPath -Replace '.Tests.ps1') {
         BeforeEach {
             $psPASSession.ExternalVersion = '0.0'
 
-            #TODO: Figure out how to include Assert-VersionRequirement in P Cloud function tests
             Mock Assert-VersionRequirement -MockWith {}
 
             Mock Invoke-PASRestMethod -MockWith {
@@ -90,6 +89,9 @@ Describe $($PSCommandPath -Replace '.Tests.ps1') {
 
             }
 
+            It 'calls Assert-VersionRequirement once' {
+                Assert-MockCalled Assert-VersionRequirement -Times 1 -Exactly -Scope It
+            }
         }
 
     }
